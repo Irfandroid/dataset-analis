@@ -1,150 +1,147 @@
-const CSV_URL = "data/sales.csv";
-const DONUT_COLORS = ["#2f5d4e", "#3b5f8a", "#b98a1e", "#c2410c", "#8a5f9e"];
-const MONTH_FMT = new Intl.DateTimeFormat("id-ID", { month: "short", year: "2-digit" });
-const FULL_DATE_FMT = new Intl.DateTimeFormat("id-ID", { day: "numeric", month: "short", year: "numeric" });
+import {
+  MAX_ROWS,
+  histogram,
+  inferProfiles,
+  monthlyTrend,
+  numericStats,
+  parseDelimited,
+  topValues,
+} from "./analysis.js";
 
-const rupiah = new Intl.NumberFormat("id-ID", { style: "currency", currency: "IDR", maximumFractionDigits: 0 });
-const compact = new Intl.NumberFormat("id-ID", { notation: "compact", maximumFractionDigits: 1 });
-const integer = new Intl.NumberFormat("id-ID");
+const SAMPLE_URL = "data/sales.csv";
+const MAX_BYTES = 10 * 1024 * 1024;
+const TYPE_LABELS = { number: "angka", date: "tanggal", category: "kategori", text: "teks" };
+const numberFmt = new Intl.NumberFormat("id-ID", { maximumFractionDigits: 2 });
+const compactFmt = new Intl.NumberFormat("id-ID", { notation: "compact", maximumFractionDigits: 1 });
+const integerFmt = new Intl.NumberFormat("id-ID");
+const monthFmt = new Intl.DateTimeFormat("id-ID", { month: "short", year: "2-digit" });
+const delimiterNames = { ",": "koma", ";": "titik koma", "\t": "tab", "|": "pipa" };
 
-const el = (id) => document.getElementById(id);
-const state = { category: "Semua", channel: "Semua" };
-let rows = [];
-let months = [];
+const $ = (id) => document.getElementById(id);
+const byType = (type) => (data?.profiles ?? []).filter((profile) => profile.type === type);
+const picks = { trend: "", numeric: "", category: "" };
 
-// Sederhana: kolom CSV demo tidak memuat koma atau tanda kutip.
-function parseCsv(text) {
-  const [header, ...lines] = text.trim().split(/\r?\n/);
-  const keys = header.split(",");
-  return lines
-    .filter(Boolean)
-    .map((line) => {
-      const cells = line.split(",");
-      const row = Object.fromEntries(keys.map((key, i) => [key, cells[i]]));
-      const units = Number(row.units);
-      const unitPrice = Number(row.unit_price);
-      return { ...row, units, unitPrice, revenue: units * unitPrice };
-    });
+let data = null;
+let sourceLabel = "";
+let trendWidth = 0;
+
+function setText(id, value) {
+  $(id).textContent = value;
 }
 
-function uniqueSorted(list) {
-  return [...new Set(list)].sort((a, b) => a.localeCompare(b, "id"));
+function makeCell(text, className = "") {
+  const cell = document.createElement("td");
+  cell.textContent = text;
+  if (className) cell.className = className;
+  return cell;
 }
 
-function monthKey(date) {
-  return date.slice(0, 7);
+function makeRow(cells) {
+  const row = document.createElement("tr");
+  row.append(...cells);
+  return row;
+}
+
+function fillSelect(select, options, selected) {
+  select.replaceChildren(...options.map(({ value, label }) => new Option(label, value)));
+  select.value = selected;
 }
 
 function monthLabel(key) {
-  return MONTH_FMT.format(new Date(`${key}-01T00:00:00`));
+  return monthFmt.format(new Date(`${key}-01T00:00:00Z`));
 }
 
-function fillSelect(select, values) {
-  select.replaceChildren(
-    ...["Semua", ...values].map((value) => {
-      const option = document.createElement("option");
-      option.value = value;
-      option.textContent = value;
-      return option;
-    }),
+function resetBanner() {
+  const banner = $("pesan");
+  banner.hidden = true;
+  banner.textContent = "";
+  banner.className = "banner";
+}
+
+function showBanner(message, kind = "error") {
+  const banner = $("pesan");
+  banner.textContent = message;
+  banner.className = `banner banner--${kind}`;
+  banner.hidden = false;
+}
+
+function renderMeta() {
+  const { rows, columns, totalRows, truncated, delimiter } = data;
+  setText("meta-baris", `${integerFmt.format(rows.length)} baris`);
+  setText("meta-kolom", `${integerFmt.format(columns.length)} kolom`);
+  setText("meta-sumber", sourceLabel);
+  setText("meta-ringkas", `${integerFmt.format(rows.length)} baris · ${integerFmt.format(columns.length)} kolom`);
+
+  const delimiterNote = `pemisah ${delimiterNames[delimiter] ?? delimiter}`;
+  $("status").textContent = truncated
+    ? `${integerFmt.format(rows.length)} dari ${integerFmt.format(totalRows)} baris dianalisis (batas ${integerFmt.format(MAX_ROWS)}) · ${delimiterNote}`
+    : `${integerFmt.format(rows.length)} baris × ${integerFmt.format(columns.length)} kolom · ${delimiterNote}`;
+  $("kpi-baris-note").textContent = truncated ? `dari ${integerFmt.format(totalRows)} baris` : "dianalisis";
+}
+
+function renderSummary() {
+  const missing = data.profiles.reduce((sum, profile) => sum + profile.missing, 0);
+  setText("kpi-baris", integerFmt.format(data.rows.length));
+  setText("kpi-kolom", integerFmt.format(data.columns.length));
+  setText("kpi-kosong", integerFmt.format(missing));
+  setText("kpi-numerik", integerFmt.format(byType("number").length));
+  setText("kpi-tanggal", integerFmt.format(byType("date").length));
+}
+
+function renderProfiles() {
+  $("tabel-profil").replaceChildren(
+    ...data.profiles.map((profile) =>
+      makeRow([
+        makeCell(profile.name),
+        makeCell(TYPE_LABELS[profile.type]),
+        makeCell(integerFmt.format(profile.missing), "num"),
+        makeCell(integerFmt.format(profile.unique), "num"),
+        makeCell(profile.sample),
+      ]),
+    ),
   );
 }
 
-function filteredRows() {
-  return rows.filter(
-    (row) =>
-      (state.category === "Semua" || row.category === state.category) &&
-      (state.channel === "Semua" || row.channel === state.channel),
-  );
-}
+function renderTrend() {
+  const column = byType("date")[0]?.name;
+  $("card-tren").hidden = !column;
+  if (!column) return;
 
-function totals(list) {
-  const revenue = list.reduce((sum, row) => sum + row.revenue, 0);
-  return {
-    revenue,
-    orders: list.length,
-    units: list.reduce((sum, row) => sum + row.units, 0),
-    average: list.length ? revenue / list.length : 0,
-  };
-}
-
-function groupSum(list, key, metric = "revenue") {
-  const map = new Map();
-  for (const row of list) {
-    const name = row[key];
-    const bucket = map.get(name) ?? { name, value: 0, orders: 0, units: 0 };
-    bucket.value += row[metric];
-    bucket.orders += 1;
-    bucket.units += row.units;
-    map.set(name, bucket);
+  const points = monthlyTrend(data.rows, column, picks.trend, picks.trend ? $("select-tren-metrik").value : "count");
+  const container = $("chart-tren");
+  if (!points.length) {
+    container.replaceChildren(Object.assign(document.createElement("p"), { className: "empty", textContent: "Tidak ada tanggal valid." }));
+    return;
   }
-  return [...map.values()].sort((a, b) => b.value - a.value);
-}
 
-function renderKpis(list) {
-  const sum = totals(list);
-  el("kpi-pendapatan").textContent = rupiah.format(sum.revenue);
-  el("kpi-pesanan").textContent = integer.format(sum.orders);
-  el("kpi-unit").textContent = integer.format(sum.units);
-  el("kpi-rata").textContent = rupiah.format(Math.round(sum.average));
-}
-
-function emptyChart(container, message) {
-  container.replaceChildren(Object.assign(document.createElement("p"), { className: "empty", textContent: message }));
-}
-
-// Grafik SVG memakai lebar kontainer agar teks tidak ikut mengecil di layar sempit.
-let resizeTimer;
-function watchResize() {
-  window.addEventListener("resize", () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(render, 120);
-  });
-}
-
-function renderTrend(list) {
-  const container = el("chart-tren");
-  if (!list.length) return emptyChart(container, "Tidak ada pesanan untuk filter ini.");
-
-  const byMonth = new Map(months.map((key) => [key, 0]));
-  for (const row of list) {
-    const key = monthKey(row.date);
-    byMonth.set(key, (byMonth.get(key) ?? 0) + row.revenue);
-  }
-  const data = [...byMonth].map(([key, value]) => ({ key, value }));
-  const max = Math.max(...data.map((d) => d.value)) || 1;
+  const max = Math.max(...points.map((point) => point.value)) || 1;
   const width = Math.max(container.clientWidth, 280);
+  trendWidth = width;
   const height = width < 480 ? 200 : 220;
   const pad = { top: 18, right: 26, bottom: 30, left: 26 };
   const plotW = width - pad.left - pad.right;
   const plotH = height - pad.top - pad.bottom;
-  const step = data.length > 1 ? plotW / (data.length - 1) : 0;
+  const step = points.length > 1 ? plotW / (points.length - 1) : 0;
   const x = (i) => pad.left + i * step;
   const y = (value) => pad.top + plotH - (value / (max * 1.08)) * plotH;
 
-  const line = data.map((d, i) => `${i ? "L" : "M"}${x(i).toFixed(1)},${y(d.value).toFixed(1)}`).join(" ");
-  const area = `${line} L${x(data.length - 1).toFixed(1)},${(pad.top + plotH).toFixed(1)} L${x(0).toFixed(1)},${(pad.top + plotH).toFixed(1)} Z`;
-
+  const line = points.map((point, i) => `${i ? "L" : "M"}${x(i).toFixed(1)},${y(point.value).toFixed(1)}`).join(" ");
+  const area = `${line} L${x(points.length - 1).toFixed(1)},${(pad.top + plotH).toFixed(1)} L${x(0).toFixed(1)},${(pad.top + plotH).toFixed(1)} Z`;
   const grid = [0.25, 0.5, 0.75, 1]
-    .map((ratio) => {
-      const gy = (pad.top + plotH - ratio * plotH).toFixed(1);
-      return `<line class="grid" x1="${pad.left}" y1="${gy}" x2="${width - pad.right}" y2="${gy}" />`;
-    })
+    .map((ratio) => `<line class="grid" x1="${pad.left}" y1="${(pad.top + plotH - ratio * plotH).toFixed(1)}" x2="${width - pad.right}" y2="${(pad.top + plotH - ratio * plotH).toFixed(1)}" />`)
     .join("");
-
-  const labels = data
-    .map((d, i) => `<text x="${x(i).toFixed(1)}" y="${height - 8}" ${i % 2 ? "" : 'text-anchor="middle"'}>${i % 2 ? "" : monthLabel(d.key)}</text>`)
+  const labels = points
+    .map((point, i) => (i % 2 ? "" : `<text x="${x(i).toFixed(1)}" y="${height - 8}" text-anchor="middle">${monthLabel(point.key)}</text>`))
     .join("");
-
-  const dots = data
+  const dots = points
     .map(
-      (d, i) =>
-        `<circle cx="${x(i).toFixed(1)}" cy="${y(d.value).toFixed(1)}" r="3.2" fill="#c2410c" stroke="#fffdf8" stroke-width="1.5"><title>${monthLabel(d.key)}: ${rupiah.format(d.value)}</title></circle>`,
+      (point, i) =>
+        `<circle cx="${x(i).toFixed(1)}" cy="${y(point.value).toFixed(1)}" r="3.2" fill="#c2410c" stroke="#fffdf8" stroke-width="1.5"><title>${monthLabel(point.key)}: ${numberFmt.format(point.value)}</title></circle>`,
     )
     .join("");
 
   container.innerHTML = `
-    <svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Pendapatan bulanan. Tertinggi ${rupiah.format(max)}.">
+    <svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Tren bulanan, nilai tertinggi ${numberFmt.format(max)}.">
       <defs>
         <linearGradient id="area-fill" x1="0" y1="0" x2="0" y2="1">
           <stop offset="0%" stop-color="#c2410c" stop-opacity="0.18" />
@@ -155,202 +152,217 @@ function renderTrend(list) {
       <path d="${area}" fill="url(#area-fill)" />
       <path d="${line}" fill="none" stroke="#c2410c" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" />
       ${dots}
-      <text class="value" x="${pad.left}" y="12">${compact.format(max)}</text>
+      <text class="value" x="${pad.left}" y="12">${compactFmt.format(max)}</text>
       ${labels}
     </svg>`;
 }
 
-function renderCategory(list) {
-  const container = el("chart-kategori");
-  if (!list.length) return emptyChart(container, "Tidak ada pesanan untuk filter ini.");
-
-  const data = groupSum(list, "category");
-  const max = data[0].value || 1;
+function renderBars(container, items, total) {
+  if (!items.length) {
+    container.replaceChildren(Object.assign(document.createElement("p"), { className: "empty", textContent: "Tidak ada nilai untuk ditampilkan." }));
+    return;
+  }
+  const max = Math.max(...items.map((item) => item.value)) || 1;
   const wrapper = document.createElement("div");
   wrapper.className = "bars";
 
-  for (const item of data) {
-    const rowEl = document.createElement("div");
-    rowEl.className = "bar-row";
-
+  for (const item of items) {
+    const row = document.createElement("div");
+    row.className = "bar-row";
     const label = document.createElement("span");
     label.className = "bar-row__label";
     label.textContent = item.name;
-
+    label.title = item.name;
     const track = document.createElement("div");
     track.className = "bar-row__track";
     const fill = document.createElement("div");
     fill.className = "bar-row__fill";
     fill.style.width = `${Math.max((item.value / max) * 100, 1.5)}%`;
     track.append(fill);
-
     const value = document.createElement("span");
     value.className = "bar-row__value";
-    value.textContent = `${compact.format(item.value)} · ${Math.round((item.value / totals(list).revenue) * 100)}%`;
-
-    rowEl.append(label, track, value);
-    wrapper.append(rowEl);
+    value.textContent = total ? `${integerFmt.format(item.value)} · ${Math.round((item.value / total) * 100)}%` : integerFmt.format(item.value);
+    row.append(label, track, value);
+    wrapper.append(row);
   }
   container.replaceChildren(wrapper);
 }
 
-function renderChannel(list) {
-  const container = el("chart-kanal");
-  if (!list.length) return emptyChart(container, "Tidak ada pesanan untuk filter ini.");
+function renderHistogram() {
+  const numeric = byType("number");
+  $("card-histogram").hidden = !numeric.length;
+  if (!numeric.length) return;
 
-  const data = groupSum(list, "channel", "orders").sort((a, b) => b.orders - a.orders);
-  const total = data.reduce((sum, d) => sum + d.orders, 0);
-  const radius = 46;
-  const circumference = 2 * Math.PI * radius;
-  let offset = 0;
+  const column = numeric.some((profile) => profile.name === picks.numeric) ? picks.numeric : numeric[0].name;
+  picks.numeric = column;
+  $("select-histogram").value = column;
+  const bins = histogram(data.rows, column).map((bin) => ({
+    name: bin.from === bin.to ? numberFmt.format(bin.from) : `${numberFmt.format(bin.from)} – ${numberFmt.format(bin.to)}`,
+    value: bin.count,
+  }));
+  renderBars($("chart-histogram"), bins, data.rows.length);
+}
 
-  const arcs = data
-    .map((item, i) => {
-      const length = (item.orders / total) * circumference;
-      const arc = `<circle cx="60" cy="60" r="${radius}" fill="none" stroke="${DONUT_COLORS[i % DONUT_COLORS.length]}" stroke-width="16"
-        stroke-dasharray="${length} ${circumference - length}" stroke-dashoffset="${-offset}"
-        transform="rotate(-90 60 60)"><title>${item.name}: ${integer.format(item.orders)} pesanan</title></circle>`;
-      offset += length;
-      return arc;
-    })
-    .join("");
+function renderTopValues() {
+  const categories = byType("category");
+  $("card-kategori").hidden = !categories.length;
+  if (!categories.length) return;
 
-  const legend = document.createElement("ul");
-  legend.className = "legend";
-  data.forEach((item, i) => {
-    const li = document.createElement("li");
-    const dot = document.createElement("span");
-    dot.className = "legend__dot";
-    dot.style.background = DONUT_COLORS[i % DONUT_COLORS.length];
-    const name = document.createElement("span");
-    name.className = "legend__name";
-    name.textContent = item.name;
-    const value = document.createElement("span");
-    value.className = "legend__value";
-    value.textContent = `${Math.round((item.orders / total) * 100)}%`;
-    li.append(dot, name, value);
-    legend.append(li);
+  const valid = categories.some((profile) => profile.name === picks.category);
+  const column = valid ? picks.category : categories[0].name;
+  picks.category = column;
+  $("select-kategori").value = column;
+  const items = topValues(data.rows, column, 10);
+  $("hint-kategori").textContent = `Sepuluh nilai terbanyak dari ${integerFmt.format(categories.find((profile) => profile.name === column)?.unique ?? 0)} nilai unik.`;
+  renderBars($("chart-kategori"), items, data.rows.length);
+}
+
+function renderStats() {
+  const numeric = byType("number");
+  document.getElementById("statistik").hidden = !numeric.length;
+  $("tabel-statistik").replaceChildren(
+    ...numeric.map((profile) => {
+      const stats = numericStats(data.rows, profile.name);
+      return makeRow([
+        makeCell(profile.name),
+        makeCell(integerFmt.format(stats.count), "num"),
+        makeCell(numberFmt.format(stats.sum), "num"),
+        makeCell(numberFmt.format(stats.mean), "num"),
+        makeCell(numberFmt.format(stats.median), "num"),
+        makeCell(numberFmt.format(stats.min), "num"),
+        makeCell(numberFmt.format(stats.max), "num"),
+      ]);
+    }),
+  );
+}
+
+function renderPreview() {
+  const head = document.createElement("tr");
+  for (const column of data.columns) {
+    const th = document.createElement("th");
+    th.scope = "col";
+    th.textContent = column;
+    head.append(th);
+  }
+  $("pratinjau-kepala").replaceChildren(head);
+  $("pratinjau-isi").replaceChildren(
+    ...data.rows.slice(0, 20).map((row) => makeRow(data.columns.map((column) => makeCell(row[column])))),
+  );
+}
+
+function populateSelects() {
+  const numeric = byType("number").map((profile) => ({ value: profile.name, label: profile.name }));
+  const categories = byType("category").map((profile) => ({ value: profile.name, label: profile.name }));
+
+  fillSelect($("select-tren-nilai"), [{ value: "", label: "Jumlah baris" }, ...numeric], picks.trend);
+  fillSelect($("select-histogram"), numeric, picks.numeric);
+  fillSelect($("select-kategori"), categories, picks.category);
+  $("select-tren-metrik").disabled = !picks.trend;
+}
+
+function renderAll() {
+  if (!data) return;
+  renderMeta();
+  renderSummary();
+  renderProfiles();
+  populateSelects();
+  renderTrend();
+  renderHistogram();
+  renderTopValues();
+  renderStats();
+  renderPreview();
+}
+
+function applyDataset(parsed, label) {
+  if (!parsed.columns.length || !parsed.rows.length) {
+    throw new Error("Tidak ada data terbaca. Pastikan baris pertama berisi nama kolom dan ada minimal satu baris isi.");
+  }
+  data = { ...parsed, profiles: inferProfiles(parsed.rows, parsed.columns) };
+  sourceLabel = label;
+  picks.trend = byType("number")[0]?.name ?? "";
+  picks.numeric = picks.trend;
+  picks.category = byType("category")[0]?.name ?? "";
+  resetBanner();
+  renderAll();
+  if (parsed.truncated) {
+    showBanner(`Dataset dipotong: hanya ${integerFmt.format(MAX_ROWS)} baris pertama yang dianalisis.`, "info");
+  }
+}
+
+async function loadSample() {
+  data = null;
+  $("status").textContent = "Memuat data contoh…";
+  resetBanner();
+  try {
+    const response = await fetch(SAMPLE_URL, { cache: "no-cache" });
+    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+    applyDataset(parseDelimited(await response.text()), "sales.csv · contoh");
+  } catch (error) {
+    $("status").textContent = "Gagal memuat data contoh.";
+    showBanner(`Data contoh gagal dimuat (${error.message}). Jalankan lewat server statis, bukan file://.`);
+  }
+}
+
+async function loadFile(file) {
+  $("status").textContent = `Membaca ${file.name}…`;
+  try {
+    if (file.size > MAX_BYTES) throw new Error("Ukuran file melebihi 10 MB.");
+    applyDataset(parseDelimited(await file.text()), file.name);
+  } catch (error) {
+    $("status").textContent = "File tidak dapat dibaca.";
+    showBanner(error.message);
+  }
+}
+
+function bindEvents() {
+  const input = $("file-input");
+  const dropzone = $("dropzone");
+
+  input.addEventListener("change", async () => {
+    const file = input.files?.[0];
+    input.value = "";
+    if (file) await loadFile(file);
   });
 
-  const wrapper = document.createElement("div");
-  wrapper.className = "donut";
-  wrapper.innerHTML = `<svg viewBox="0 0 120 120" role="img" aria-label="Porsi pesanan per kanal">${arcs}
-    <text x="60" y="58" font-size="17">${compact.format(total)}</text>
-    <text x="60" y="72" font-size="9">pesanan</text></svg>`;
-  wrapper.append(legend);
-  container.replaceChildren(wrapper);
-}
-
-function renderTable(list) {
-  const body = el("tabel-kota");
-  if (!list.length) {
-    const tr = document.createElement("tr");
-    const td = document.createElement("td");
-    td.colSpan = 5;
-    td.className = "empty";
-    td.textContent = "Tidak ada pesanan untuk filter ini.";
-    tr.append(td);
-    body.replaceChildren(tr);
-    return;
-  }
-
-  const data = groupSum(list, "city");
-  const max = data[0].value || 1;
-  const fragment = document.createDocumentFragment();
-
-  for (const item of data) {
-    const tr = document.createElement("tr");
-    const city = document.createElement("td");
-    city.textContent = item.name;
-
-    const revenue = document.createElement("td");
-    revenue.className = "num";
-    const bar = document.createElement("span");
-    bar.className = "bar-cell";
-    const barFill = document.createElement("span");
-    barFill.style.width = `${Math.max((item.value / max) * 100, 3)}%`;
-    bar.append(barFill);
-    revenue.append(bar, document.createTextNode(rupiah.format(item.value)));
-
-    const orders = document.createElement("td");
-    orders.className = "num";
-    orders.textContent = integer.format(item.orders);
-
-    const units = document.createElement("td");
-    units.className = "num";
-    units.textContent = integer.format(item.units);
-
-    const average = document.createElement("td");
-    average.className = "num";
-    average.textContent = rupiah.format(Math.round(item.value / item.orders));
-
-    tr.append(city, revenue, orders, units, average);
-    fragment.append(tr);
-  }
-  body.replaceChildren(fragment);
-}
-
-function render() {
-  const list = filteredRows();
-  const isFiltered = state.category !== "Semua" || state.channel !== "Semua";
-  el("status").textContent = `${integer.format(list.length)} dari ${integer.format(rows.length)} pesanan${isFiltered ? " (terfilter)" : ""}`;
-  renderKpis(list);
-  renderTrend(list);
-  renderCategory(list);
-  renderChannel(list);
-  renderTable(list);
-}
-
-function renderMeta() {
-  const dates = rows.map((row) => row.date).sort();
-  const first = new Date(`${dates[0]}T00:00:00`);
-  const last = new Date(`${dates.at(-1)}T00:00:00`);
-  const period = `${FULL_DATE_FMT.format(first)} – ${FULL_DATE_FMT.format(last)}`;
-  el("periode").textContent = period;
-  el("meta-periode").textContent = period;
-  el("meta-baris").textContent = `${integer.format(rows.length)} pesanan`;
-}
-
-function showError(message) {
-  const alert = document.createElement("p");
-  alert.className = "alert";
-  alert.setAttribute("role", "alert");
-  alert.textContent = message;
-  document.querySelector(".hero").append(alert);
-}
-
-async function init() {
-  try {
-    const response = await fetch(CSV_URL, { cache: "no-cache" });
-    if (!response.ok) throw new Error(`HTTP ${response.status}`);
-    rows = parseCsv(await response.text());
-
-    months = [...new Set(rows.map((row) => monthKey(row.date)))].sort();
-    fillSelect(el("filter-kategori"), uniqueSorted(rows.map((row) => row.category)));
-    fillSelect(el("filter-kanal"), uniqueSorted(rows.map((row) => row.channel)));
-
-    renderMeta();
-    render();
-    watchResize();
-
-    el("filter-kategori").addEventListener("change", (event) => {
-      state.category = event.target.value;
-      render();
+  for (const type of ["dragenter", "dragover"]) {
+    dropzone.addEventListener(type, (event) => {
+      event.preventDefault();
+      dropzone.classList.add("dropzone--active");
     });
-    el("filter-kanal").addEventListener("change", (event) => {
-      state.channel = event.target.value;
-      render();
-    });
-    el("reset").addEventListener("click", () => {
-      state.category = "Semua";
-      state.channel = "Semua";
-      el("filter-kategori").value = "Semua";
-      el("filter-kanal").value = "Semua";
-      render();
-    });
-  } catch (error) {
-    showError(`Dataset gagal dimuat (${error.message}). Jalankan lewat server statis, bukan file://.`);
   }
+  for (const type of ["dragleave", "drop"]) {
+    dropzone.addEventListener(type, (event) => {
+      event.preventDefault();
+      dropzone.classList.remove("dropzone--active");
+    });
+  }
+  dropzone.addEventListener("drop", async (event) => {
+    const file = event.dataTransfer?.files?.[0];
+    if (file) await loadFile(file);
+  });
+
+  $("pakai-contoh").addEventListener("click", loadSample);
+
+  $("select-tren-nilai").addEventListener("change", (event) => {
+    picks.trend = event.target.value;
+    $("select-tren-metrik").disabled = !picks.trend;
+    renderTrend();
+  });
+  $("select-tren-metrik").addEventListener("change", renderTrend);
+  $("select-histogram").addEventListener("change", (event) => {
+    picks.numeric = event.target.value;
+    renderHistogram();
+  });
+  $("select-kategori").addEventListener("change", (event) => {
+    picks.category = event.target.value;
+    renderTopValues();
+  });
+
+  // Lebar SVG mengikuti kontainer agar teks tidak ikut mengecil saat layout berubah.
+  new ResizeObserver(() => {
+    if (Math.abs($("chart-tren").clientWidth - trendWidth) > 1) renderTrend();
+  }).observe($("chart-tren"));
 }
 
-init();
+bindEvents();
+loadSample();

@@ -3,10 +3,11 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Analis Set — dashboard penjualan ritel</title>
-    <meta name="description" content="Dashboard statis untuk membaca 420 pesanan ritel: pendapatan bulanan, kategori, kanal, dan kota." />
+    <title>Analis Set — penjelajah dataset</title>
+    <meta name="description" content="Unggah CSV atau TSV dan lihat profil kolom, tren, distribusi, serta statistik. Semua diproses di browser." />
     <link rel="stylesheet" href="assets/styles.css" />
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <script type="module" src="assets/app.js"></script>
   </head>
   <body>
     <a class="skip" href="#konten">Lompat ke konten</a>
@@ -16,119 +17,180 @@
         <span class="brand__mark" aria-hidden="true">AS</span>
         <span>
           <strong>Analis Set</strong>
-          <small>dataset penjualan</small>
+          <small>penjelajah dataset</small>
         </span>
       </a>
       <nav aria-label="Navigasi utama">
         <a href="#ringkasan">Ringkasan</a>
-        <a href="#tren">Tren</a>
-        <a href="#kota">Kota</a>
-        <a class="nav__data" href="data/sales.csv" download>Unduh CSV</a>
+        <a href="#kolom">Kolom</a>
+        <a href="#statistik">Statistik</a>
+        <a href="#pratinjau">Pratinjau</a>
+        <a class="nav__data" href="data/sales.csv" download>Contoh CSV</a>
       </nav>
     </header>
 
     <main id="konten">
       <section class="hero" id="atas">
-        <p class="eyebrow">Laporan statis · <span id="periode">memuat…</span></p>
-        <h1>Satu tahun penjualan,<br />dibaca dalam satu layar.</h1>
+        <p class="eyebrow">Penjelajah dataset · <span id="meta-ringkas">memuat…</span></p>
+        <h1>Dataset apa pun,<br />dibaca dalam satu layar.</h1>
         <p class="lede">
-          420 pesanan sintetis dari lima kategori, tiga kanal, dan enam kota.
-          Semua angka dihitung di browser langsung dari <code>data/sales.csv</code> — tanpa server, tanpa database.
+          Unggah CSV atau TSV. Kolom diprofilkan otomatis — angka, tanggal, kategori, teks — lalu diringkas
+          menjadi tren, distribusi, dan statistik. Semua diproses di browser; file tidak dikirim ke mana pun.
         </p>
         <dl class="meta">
-          <div><dt>Baris data</dt><dd id="meta-baris">—</dd></div>
-          <div><dt>Periode</dt><dd id="meta-periode">—</dd></div>
-          <div><dt>Sumber</dt><dd><a href="data/sales.csv">sales.csv</a></dd></div>
+          <div><dt>Baris</dt><dd id="meta-baris">—</dd></div>
+          <div><dt>Kolom</dt><dd id="meta-kolom">—</dd></div>
+          <div><dt>Sumber</dt><dd id="meta-sumber">—</dd></div>
         </dl>
       </section>
 
-      <section class="panel" aria-labelledby="filter-judul">
-        <h2 id="filter-judul" class="sr-only">Filter data</h2>
-        <div class="filters">
-          <label>
-            <span>Kategori</span>
-            <select id="filter-kategori"></select>
+      <section class="panel" aria-labelledby="unggah-judul">
+        <div class="upload">
+          <div class="upload__text">
+            <h2 id="unggah-judul">Muat dataset</h2>
+            <p>CSV atau TSV, maksimal 10 MB. File contoh: <a href="data/sales.csv" download>sales.csv</a>.</p>
+          </div>
+          <label class="dropzone" id="dropzone" for="file-input">
+            <span class="dropzone__title">Pilih file</span>
+            <span class="dropzone__hint">atau tarik ke sini</span>
+            <input id="file-input" type="file" accept=".csv,.tsv,text/csv,text/tab-separated-values" />
           </label>
-          <label>
-            <span>Kanal</span>
-            <select id="filter-kanal"></select>
-          </label>
-          <button type="button" id="reset" class="ghost">Reset</button>
-          <p class="filters__status" id="status" role="status" aria-live="polite"></p>
         </div>
+        <div class="upload__foot">
+          <p class="upload__status" id="status" role="status" aria-live="polite">Memuat data contoh…</p>
+          <button type="button" class="ghost" id="pakai-contoh">Pakai data contoh</button>
+        </div>
+        <p class="banner" id="pesan" role="alert" hidden></p>
       </section>
 
       <section id="ringkasan" class="section" aria-labelledby="ringkasan-judul">
         <div class="section__head">
           <h2 id="ringkasan-judul">Ringkasan</h2>
-          <p>Angka mengikuti filter di atas.</p>
+          <p>Profil singkat dataset aktif.</p>
         </div>
-        <div class="kpis" id="kpis">
-          <article class="kpi"><p class="kpi__label">Pendapatan</p><p class="kpi__value" id="kpi-pendapatan">—</p><p class="kpi__note">units × harga satuan</p></article>
-          <article class="kpi"><p class="kpi__label">Pesanan</p><p class="kpi__value" id="kpi-pesanan">—</p><p class="kpi__note">baris terfilter</p></article>
-          <article class="kpi"><p class="kpi__label">Unit terjual</p><p class="kpi__value" id="kpi-unit">—</p><p class="kpi__note">total kuantitas</p></article>
-          <article class="kpi"><p class="kpi__label">Rata-rata pesanan</p><p class="kpi__value" id="kpi-rata">—</p><p class="kpi__note">pendapatan ÷ pesanan</p></article>
-        </div>
-      </section>
-
-      <section id="tren" class="section" aria-labelledby="tren-judul">
-        <div class="section__head">
-          <h2 id="tren-judul">Tren &amp; komposisi</h2>
-          <p>Dua belas bulan terakhir pada dataset.</p>
-        </div>
-        <div class="charts">
-          <figure class="card card--wide">
-            <figcaption>
-              <h3>Pendapatan per bulan</h3>
-              <p class="hint">Rupiah, skala ringkas</p>
-            </figcaption>
-            <div id="chart-tren" class="chart"></div>
-          </figure>
-          <figure class="card">
-            <figcaption>
-              <h3>Kategori</h3>
-              <p class="hint">Porsi pendapatan</p>
-            </figcaption>
-            <div id="chart-kategori" class="chart"></div>
-          </figure>
-          <figure class="card">
-            <figcaption>
-              <h3>Kanal</h3>
-              <p class="hint">Porsi pesanan</p>
-            </figcaption>
-            <div id="chart-kanal" class="chart"></div>
-          </figure>
+        <div class="kpis">
+          <article class="kpi"><p class="kpi__label">Baris</p><p class="kpi__value" id="kpi-baris">—</p><p class="kpi__note" id="kpi-baris-note">dianalisis</p></article>
+          <article class="kpi"><p class="kpi__label">Kolom</p><p class="kpi__value" id="kpi-kolom">—</p><p class="kpi__note">terdeteksi</p></article>
+          <article class="kpi"><p class="kpi__label">Sel kosong</p><p class="kpi__value" id="kpi-kosong">—</p><p class="kpi__note">nilai tanpa isi</p></article>
+          <article class="kpi"><p class="kpi__label">Kolom angka</p><p class="kpi__value" id="kpi-numerik">—</p><p class="kpi__note">punya statistik</p></article>
+          <article class="kpi"><p class="kpi__label">Kolom tanggal</p><p class="kpi__value" id="kpi-tanggal">—</p><p class="kpi__note">punya tren</p></article>
         </div>
       </section>
 
-      <section id="kota" class="section" aria-labelledby="kota-judul">
+      <section id="kolom" class="section" aria-labelledby="kolom-judul">
         <div class="section__head">
-          <h2 id="kota-judul">Kinerja per kota</h2>
-          <p>Diurutkan dari pendapatan terbesar.</p>
+          <h2 id="kolom-judul">Profil kolom</h2>
+          <p>Tipe ditebak dari isi, bukan nama kolom.</p>
         </div>
         <div class="table-wrap">
           <table>
-            <caption class="sr-only">Pendapatan, pesanan, dan unit per kota setelah filter diterapkan</caption>
+            <caption class="sr-only">Nama kolom, tipe terdeteksi, jumlah sel kosong, nilai unik, dan contoh isi</caption>
             <thead>
               <tr>
-                <th scope="col">Kota</th>
-                <th scope="col" class="num">Pendapatan</th>
-                <th scope="col" class="num">Pesanan</th>
-                <th scope="col" class="num">Unit</th>
-                <th scope="col" class="num">Rata-rata</th>
+                <th scope="col">Kolom</th>
+                <th scope="col">Tipe</th>
+                <th scope="col" class="num">Kosong</th>
+                <th scope="col" class="num">Unik</th>
+                <th scope="col">Contoh</th>
               </tr>
             </thead>
-            <tbody id="tabel-kota"></tbody>
+            <tbody id="tabel-profil"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="analisis" class="section" aria-labelledby="analisis-judul">
+        <div class="section__head">
+          <h2 id="analisis-judul">Tren &amp; distribusi</h2>
+          <p>Pilih kolom untuk mengubah sudut pandang.</p>
+        </div>
+        <div class="charts">
+          <figure class="card card--wide" id="card-tren">
+            <figcaption>
+              <div>
+                <h3>Tren bulanan</h3>
+                <p class="hint">Pilih kolom angka untuk dijumlahkan atau dirata-rata.</p>
+              </div>
+              <div class="controls">
+                <select id="select-tren-nilai" aria-label="Kolom nilai tren"><option value="">Jumlah baris</option></select>
+                <select id="select-tren-metrik" aria-label="Agregasi tren">
+                  <option value="sum">Jumlah</option>
+                  <option value="mean">Rata-rata</option>
+                </select>
+              </div>
+            </figcaption>
+            <div id="chart-tren" class="chart"></div>
+          </figure>
+
+          <figure class="card" id="card-histogram">
+            <figcaption>
+              <div>
+                <h3>Distribusi</h3>
+                <p class="hint">Sebaran nilai kolom angka.</p>
+              </div>
+              <select id="select-histogram" aria-label="Kolom histogram"></select>
+            </figcaption>
+            <div id="chart-histogram" class="chart"></div>
+          </figure>
+
+          <figure class="card" id="card-kategori">
+            <figcaption>
+              <div>
+                <h3>Nilai teratas</h3>
+                <p class="hint" id="hint-kategori">Sepuluh nilai paling sering.</p>
+              </div>
+              <select id="select-kategori" aria-label="Kolom kategori"></select>
+            </figcaption>
+            <div id="chart-kategori" class="chart"></div>
+          </figure>
+        </div>
+      </section>
+
+      <section id="statistik" class="section" aria-labelledby="statistik-judul">
+        <div class="section__head">
+          <h2 id="statistik-judul">Statistik angka</h2>
+          <p>Dihitung dari nilai yang valid saja.</p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <caption class="sr-only">Statistik ringkas untuk setiap kolom angka</caption>
+            <thead>
+              <tr>
+                <th scope="col">Kolom</th>
+                <th scope="col" class="num">N</th>
+                <th scope="col" class="num">Jumlah</th>
+                <th scope="col" class="num">Rata-rata</th>
+                <th scope="col" class="num">Median</th>
+                <th scope="col" class="num">Min</th>
+                <th scope="col" class="num">Maks</th>
+              </tr>
+            </thead>
+            <tbody id="tabel-statistik"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section id="pratinjau" class="section" aria-labelledby="pratinjau-judul">
+        <div class="section__head">
+          <h2 id="pratinjau-judul">Pratinjau</h2>
+          <p>Dua puluh baris pertama.</p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <caption class="sr-only">Pratinjau baris dataset</caption>
+            <thead id="pratinjau-kepala"></thead>
+            <tbody id="pratinjau-isi"></tbody>
           </table>
         </div>
       </section>
     </main>
 
     <footer class="footer">
-      <p>Data sintetis untuk demo — bukan angka penjualan nyata. Dibuat ulang dengan <code>node scripts/generate-data.mjs</code>.</p>
+      <p>
+        Data contoh <a href="data/sales.csv">sales.csv</a> bersifat sintetis — bukan angka penjualan nyata.
+        Dibuat ulang dengan <code>node scripts/generate-data.mjs</code>.
+      </p>
       <p>HTML, CSS, dan JS tanpa dependensi. Disajikan oleh nginx di dalam Docker.</p>
     </footer>
-
-    <script src="assets/app.js" type="module"></script>
   </body>
 </html>

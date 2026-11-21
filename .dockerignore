@@ -5,6 +5,7 @@ Dockerfile
 docker-compose.yml
 README.md
 LICENSE
+package.json
 scripts/
 .github/
 *.log
