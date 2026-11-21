@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Analis Set — dashboard penjualan ritel</title>
+    <meta name="description" content="Dashboard statis untuk membaca 420 pesanan ritel: pendapatan bulanan, kategori, kanal, dan kota." />
+    <link rel="stylesheet" href="assets/styles.css" />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    <a class="skip" href="#konten">Lompat ke konten</a>
+
+    <header class="topbar">
+      <a class="brand" href="#atas">
+        <span class="brand__mark" aria-hidden="true">AS</span>
+        <span>
+          <strong>Analis Set</strong>
+          <small>dataset penjualan</small>
+        </span>
+      </a>
+      <nav aria-label="Navigasi utama">
+        <a href="#ringkasan">Ringkasan</a>
+        <a href="#tren">Tren</a>
+        <a href="#kota">Kota</a>
+        <a class="nav__data" href="data/sales.csv" download>Unduh CSV</a>
+      </nav>
+    </header>
+
+    <main id="konten">
+      <section class="hero" id="atas">
+        <p class="eyebrow">Laporan statis · <span id="periode">memuat…</span></p>
+        <h1>Satu tahun penjualan,<br />dibaca dalam satu layar.</h1>
+        <p class="lede">
+          420 pesanan sintetis dari lima kategori, tiga kanal, dan enam kota.
+          Semua angka dihitung di browser langsung dari <code>data/sales.csv</code> — tanpa server, tanpa database.
+        </p>
+        <dl class="meta">
+          <div><dt>Baris data</dt><dd id="meta-baris">—</dd></div>
+          <div><dt>Periode</dt><dd id="meta-periode">—</dd></div>
+          <div><dt>Sumber</dt><dd><a href="data/sales.csv">sales.csv</a></dd></div>
+        </dl>
+      </section>
+
+      <section class="panel" aria-labelledby="filter-judul">
+        <h2 id="filter-judul" class="sr-only">Filter data</h2>
+        <div class="filters">
+          <label>
+            <span>Kategori</span>
+            <select id="filter-kategori"></select>
+          </label>
+          <label>
+            <span>Kanal</span>
+            <select id="filter-kanal"></select>
+          </label>
+          <button type="button" id="reset" class="ghost">Reset</button>
+          <p class="filters__status" id="status" role="status" aria-live="polite"></p>
+        </div>
+      </section>
+
+      <section id="ringkasan" class="section" aria-labelledby="ringkasan-judul">
+        <div class="section__head">
+          <h2 id="ringkasan-judul">Ringkasan</h2>
+          <p>Angka mengikuti filter di atas.</p>
+        </div>
+        <div class="kpis" id="kpis">
+          <article class="kpi"><p class="kpi__label">Pendapatan</p><p class="kpi__value" id="kpi-pendapatan">—</p><p class="kpi__note">units × harga satuan</p></article>
+          <article class="kpi"><p class="kpi__label">Pesanan</p><p class="kpi__value" id="kpi-pesanan">—</p><p class="kpi__note">baris terfilter</p></article>
+          <article class="kpi"><p class="kpi__label">Unit terjual</p><p class="kpi__value" id="kpi-unit">—</p><p class="kpi__note">total kuantitas</p></article>
+          <article class="kpi"><p class="kpi__label">Rata-rata pesanan</p><p class="kpi__value" id="kpi-rata">—</p><p class="kpi__note">pendapatan ÷ pesanan</p></article>
+        </div>
+      </section>
+
+      <section id="tren" class="section" aria-labelledby="tren-judul">
+        <div class="section__head">
+          <h2 id="tren-judul">Tren &amp; komposisi</h2>
+          <p>Dua belas bulan terakhir pada dataset.</p>
+        </div>
+        <div class="charts">
+          <figure class="card card--wide">
+            <figcaption>
+              <h3>Pendapatan per bulan</h3>
+              <p class="hint">Rupiah, skala ringkas</p>
+            </figcaption>
+            <div id="chart-tren" class="chart"></div>
+          </figure>
+          <figure class="card">
+            <figcaption>
+              <h3>Kategori</h3>
+              <p class="hint">Porsi pendapatan</p>
+            </figcaption>
+            <div id="chart-kategori" class="chart"></div>
+          </figure>
+          <figure class="card">
+            <figcaption>
+              <h3>Kanal</h3>
+              <p class="hint">Porsi pesanan</p>
+            </figcaption>
+            <div id="chart-kanal" class="chart"></div>
+          </figure>
+        </div>
+      </section>
+
+      <section id="kota" class="section" aria-labelledby="kota-judul">
+        <div class="section__head">
+          <h2 id="kota-judul">Kinerja per kota</h2>
+          <p>Diurutkan dari pendapatan terbesar.</p>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <caption class="sr-only">Pendapatan, pesanan, dan unit per kota setelah filter diterapkan</caption>
+            <thead>
+              <tr>
+                <th scope="col">Kota</th>
+                <th scope="col" class="num">Pendapatan</th>
+                <th scope="col" class="num">Pesanan</th>
+                <th scope="col" class="num">Unit</th>
+                <th scope="col" class="num">Rata-rata</th>
+              </tr>
+            </thead>
+            <tbody id="tabel-kota"></tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Data sintetis untuk demo — bukan angka penjualan nyata. Dibuat ulang dengan <code>node scripts/generate-data.mjs</code>.</p>
+      <p>HTML, CSS, dan JS tanpa dependensi. Disajikan oleh nginx di dalam Docker.</p>
+    </footer>
+
+    <script src="assets/app.js" type="module"></script>
+  </body>
+</html>

@@ -1,0 +1,421 @@
+order_id,date,category,product,channel,city,units,unit_price
+ORD-0001,2026-05-26,Fesyen,Sneakers Kanvas,Toko Fisik,Yogyakarta,4,459000
+ORD-0002,2026-07-27,Fesyen,Kemeja Linen,Web,Makassar,1,249000
+ORD-0003,2026-05-27,Fesyen,Sneakers Kanvas,Marketplace,Medan,1,459000
+ORD-0004,2026-08-18,Elektronik,TWS Earbuds,Toko Fisik,Medan,1,549000
+ORD-0005,2026-08-19,Fesyen,Kemeja Linen,Marketplace,Bandung,5,249000
+ORD-0006,2026-08-16,Olahraga,Matras Yoga,Toko Fisik,Makassar,1,219000
+ORD-0007,2026-10-21,Kecantikan,Serum Vitamin C,Toko Fisik,Makassar,2,129000
+ORD-0008,2026-06-02,Olahraga,Botol Minum 1L,Marketplace,Surabaya,2,119000
+ORD-0009,2026-06-22,Kecantikan,Sunscreen SPF50,Toko Fisik,Surabaya,1,89000
+ORD-0010,2026-05-22,Elektronik,TWS Earbuds,Toko Fisik,Jakarta,4,549000
+ORD-0011,2026-11-18,Kecantikan,Sunscreen SPF50,Toko Fisik,Jakarta,2,89000
+ORD-0012,2026-10-05,Olahraga,Matras Yoga,Toko Fisik,Jakarta,1,219000
+ORD-0013,2026-11-19,Olahraga,Matras Yoga,Toko Fisik,Medan,1,219000
+ORD-0014,2026-03-20,Fesyen,Sneakers Kanvas,Toko Fisik,Surabaya,2,459000
+ORD-0015,2026-09-23,Fesyen,Kemeja Linen,Toko Fisik,Bandung,1,249000
+ORD-0016,2026-05-16,Fesyen,Sneakers Kanvas,Marketplace,Surabaya,1,459000
+ORD-0017,2026-10-17,Elektronik,TWS Earbuds,Web,Medan,1,549000
+ORD-0018,2025-12-20,Rumah Tangga,Rak Dinding,Toko Fisik,Yogyakarta,1,329000
+ORD-0019,2026-11-15,Kecantikan,Serum Vitamin C,Toko Fisik,Makassar,1,129000
+ORD-0020,2026-03-13,Rumah Tangga,Lampu Meja,Toko Fisik,Yogyakarta,3,189000
+ORD-0021,2026-04-23,Fesyen,Sneakers Kanvas,Toko Fisik,Bandung,1,459000
+ORD-0022,2026-03-30,Elektronik,TWS Earbuds,Marketplace,Jakarta,3,549000
+ORD-0023,2026-05-17,Rumah Tangga,Lampu Meja,Toko Fisik,Medan,1,189000
+ORD-0024,2026-03-21,Elektronik,TWS Earbuds,Marketplace,Jakarta,2,549000
+ORD-0025,2026-08-31,Elektronik,TWS Earbuds,Marketplace,Jakarta,2,549000
+ORD-0026,2025-12-08,Olahraga,Botol Minum 1L,Marketplace,Yogyakarta,2,119000
+ORD-0027,2026-02-23,Kecantikan,Sunscreen SPF50,Web,Jakarta,1,89000
+ORD-0028,2026-08-22,Kecantikan,Serum Vitamin C,Web,Yogyakarta,4,129000
+ORD-0029,2026-10-18,Rumah Tangga,Rak Dinding,Toko Fisik,Yogyakarta,3,329000
+ORD-0030,2026-04-11,Elektronik,TWS Earbuds,Web,Makassar,2,549000
+ORD-0031,2026-08-31,Olahraga,Botol Minum 1L,Toko Fisik,Medan,1,119000
+ORD-0032,2026-02-19,Fesyen,Sneakers Kanvas,Toko Fisik,Medan,2,459000
+ORD-0033,2026-10-06,Fesyen,Sneakers Kanvas,Marketplace,Yogyakarta,3,459000
+ORD-0034,2026-08-21,Olahraga,Botol Minum 1L,Toko Fisik,Yogyakarta,1,119000
+ORD-0035,2026-03-30,Kecantikan,Serum Vitamin C,Marketplace,Surabaya,3,129000
+ORD-0036,2026-03-17,Olahraga,Matras Yoga,Web,Makassar,3,219000
+ORD-0037,2026-05-19,Elektronik,Smartwatch,Web,Bandung,3,899000
+ORD-0038,2026-10-13,Rumah Tangga,Rak Dinding,Marketplace,Medan,1,329000
+ORD-0039,2026-07-07,Olahraga,Botol Minum 1L,Toko Fisik,Yogyakarta,1,119000
+ORD-0040,2026-11-04,Fesyen,Kemeja Linen,Marketplace,Yogyakarta,1,249000
+ORD-0041,2026-10-10,Rumah Tangga,Rak Dinding,Marketplace,Makassar,2,329000
+ORD-0042,2026-05-17,Olahraga,Matras Yoga,Web,Medan,1,219000
+ORD-0043,2026-11-12,Elektronik,Smartwatch,Marketplace,Yogyakarta,1,899000
+ORD-0044,2025-12-19,Fesyen,Kemeja Linen,Marketplace,Makassar,1,249000
+ORD-0045,2026-10-13,Fesyen,Kemeja Linen,Web,Yogyakarta,2,249000
+ORD-0046,2026-11-15,Olahraga,Matras Yoga,Web,Makassar,1,219000
+ORD-0047,2026-11-17,Fesyen,Sneakers Kanvas,Marketplace,Surabaya,1,459000
+ORD-0048,2026-06-09,Olahraga,Matras Yoga,Toko Fisik,Jakarta,3,219000
+ORD-0049,2026-05-02,Kecantikan,Serum Vitamin C,Web,Bandung,1,129000
+ORD-0050,2026-03-07,Olahraga,Matras Yoga,Web,Makassar,2,219000
+ORD-0051,2026-02-04,Rumah Tangga,Lampu Meja,Toko Fisik,Jakarta,1,189000
+ORD-0052,2026-07-18,Rumah Tangga,Rak Dinding,Toko Fisik,Jakarta,1,329000
+ORD-0053,2026-04-10,Kecantikan,Serum Vitamin C,Toko Fisik,Surabaya,3,129000
+ORD-0054,2026-08-16,Fesyen,Sneakers Kanvas,Web,Medan,1,459000
+ORD-0055,2026-08-15,Elektronik,Smartwatch,Toko Fisik,Jakarta,2,899000
+ORD-0056,2026-04-10,Fesyen,Kemeja Linen,Web,Surabaya,2,249000
+ORD-0057,2026-04-13,Fesyen,Kemeja Linen,Marketplace,Makassar,3,249000
+ORD-0058,2026-03-01,Olahraga,Matras Yoga,Marketplace,Medan,3,219000
+ORD-0059,2026-05-29,Rumah Tangga,Rak Dinding,Toko Fisik,Yogyakarta,3,329000
+ORD-0060,2026-10-17,Elektronik,TWS Earbuds,Marketplace,Makassar,1,549000
+ORD-0061,2026-10-24,Rumah Tangga,Rak Dinding,Marketplace,Medan,2,329000
+ORD-0062,2025-12-04,Olahraga,Botol Minum 1L,Web,Bandung,2,119000
+ORD-0063,2026-03-14,Kecantikan,Serum Vitamin C,Toko Fisik,Surabaya,2,129000
+ORD-0064,2025-12-03,Kecantikan,Sunscreen SPF50,Web,Jakarta,2,89000
+ORD-0065,2026-03-26,Rumah Tangga,Lampu Meja,Marketplace,Yogyakarta,1,189000
+ORD-0066,2026-05-26,Olahraga,Matras Yoga,Marketplace,Surabaya,4,219000
+ORD-0067,2026-07-06,Fesyen,Sneakers Kanvas,Toko Fisik,Bandung,2,459000
+ORD-0068,2026-07-15,Olahraga,Botol Minum 1L,Web,Makassar,1,119000
+ORD-0069,2026-07-18,Elektronik,Smartwatch,Web,Yogyakarta,1,899000
+ORD-0070,2025-12-09,Kecantikan,Serum Vitamin C,Marketplace,Jakarta,1,129000
+ORD-0071,2026-02-19,Rumah Tangga,Rak Dinding,Web,Bandung,1,329000
+ORD-0072,2026-03-07,Olahraga,Matras Yoga,Web,Makassar,3,219000
+ORD-0073,2026-06-13,Olahraga,Botol Minum 1L,Marketplace,Bandung,3,119000
+ORD-0074,2026-05-31,Kecantikan,Sunscreen SPF50,Toko Fisik,Makassar,1,89000
+ORD-0075,2025-12-27,Fesyen,Kemeja Linen,Web,Makassar,2,249000
+ORD-0076,2026-05-06,Kecantikan,Sunscreen SPF50,Toko Fisik,Surabaya,1,89000
+ORD-0077,2026-07-25,Olahraga,Botol Minum 1L,Web,Jakarta,1,119000
+ORD-0078,2026-02-04,Rumah Tangga,Lampu Meja,Toko Fisik,Jakarta,4,189000
+ORD-0079,2026-05-05,Elektronik,TWS Earbuds,Web,Jakarta,1,549000
+ORD-0080,2026-02-22,Fesyen,Sneakers Kanvas,Web,Jakarta,1,459000
+ORD-0081,2026-01-19,Olahraga,Botol Minum 1L,Marketplace,Jakarta,1,119000
+ORD-0082,2026-03-14,Olahraga,Botol Minum 1L,Marketplace,Yogyakarta,1,119000
+ORD-0083,2026-10-04,Elektronik,TWS Earbuds,Web,Medan,1,549000
+ORD-0084,2026-05-29,Fesyen,Kemeja Linen,Web,Medan,1,249000
+ORD-0085,2026-01-14,Kecantikan,Sunscreen SPF50,Toko Fisik,Jakarta,2,89000
+ORD-0086,2026-08-20,Kecantikan,Serum Vitamin C,Toko Fisik,Yogyakarta,1,129000
+ORD-0087,2026-03-23,Kecantikan,Sunscreen SPF50,Web,Bandung,3,89000
+ORD-0088,2026-05-11,Rumah Tangga,Lampu Meja,Marketplace,Makassar,1,189000
+ORD-0089,2026-07-06,Fesyen,Sneakers Kanvas,Web,Surabaya,2,459000
+ORD-0090,2026-10-27,Olahraga,Matras Yoga,Web,Medan,1,219000
+ORD-0091,2026-05-08,Kecantikan,Sunscreen SPF50,Toko Fisik,Surabaya,1,89000
+ORD-0092,2026-06-13,Elektronik,TWS Earbuds,Marketplace,Yogyakarta,3,549000
+ORD-0093,2026-08-09,Rumah Tangga,Lampu Meja,Web,Jakarta,2,189000
+ORD-0094,2026-10-02,Fesyen,Kemeja Linen,Web,Medan,4,249000
+ORD-0095,2026-08-10,Rumah Tangga,Lampu Meja,Web,Medan,2,189000
+ORD-0096,2026-01-01,Fesyen,Kemeja Linen,Toko Fisik,Yogyakarta,4,249000
+ORD-0097,2026-06-20,Kecantikan,Serum Vitamin C,Marketplace,Bandung,3,129000
+ORD-0098,2026-07-22,Olahraga,Botol Minum 1L,Marketplace,Makassar,1,119000
+ORD-0099,2025-12-23,Olahraga,Botol Minum 1L,Marketplace,Jakarta,2,119000
+ORD-0100,2026-09-16,Olahraga,Matras Yoga,Toko Fisik,Surabaya,3,219000
+ORD-0101,2026-02-05,Kecantikan,Serum Vitamin C,Marketplace,Medan,3,129000
+ORD-0102,2026-04-09,Kecantikan,Sunscreen SPF50,Marketplace,Bandung,5,89000
+ORD-0103,2026-06-25,Rumah Tangga,Rak Dinding,Web,Bandung,1,329000
+ORD-0104,2026-03-03,Kecantikan,Sunscreen SPF50,Web,Surabaya,2,89000
+ORD-0105,2026-11-12,Fesyen,Kemeja Linen,Marketplace,Medan,1,249000
+ORD-0106,2026-08-12,Olahraga,Botol Minum 1L,Web,Jakarta,3,119000
+ORD-0107,2026-06-14,Olahraga,Matras Yoga,Marketplace,Yogyakarta,2,219000
+ORD-0108,2025-12-28,Kecantikan,Serum Vitamin C,Web,Bandung,4,129000
+ORD-0109,2026-08-04,Elektronik,Smartwatch,Toko Fisik,Makassar,1,899000
+ORD-0110,2026-11-23,Olahraga,Botol Minum 1L,Web,Makassar,2,119000
+ORD-0111,2026-07-20,Elektronik,TWS Earbuds,Web,Surabaya,1,549000
+ORD-0112,2026-03-06,Fesyen,Kemeja Linen,Marketplace,Makassar,1,249000
+ORD-0113,2026-05-26,Rumah Tangga,Lampu Meja,Toko Fisik,Medan,1,189000
+ORD-0114,2026-06-04,Fesyen,Sneakers Kanvas,Toko Fisik,Medan,1,459000
+ORD-0115,2026-11-13,Rumah Tangga,Lampu Meja,Toko Fisik,Surabaya,1,189000
+ORD-0116,2026-10-06,Elektronik,Smartwatch,Marketplace,Jakarta,1,899000
+ORD-0117,2026-09-27,Kecantikan,Serum Vitamin C,Toko Fisik,Bandung,1,129000
+ORD-0118,2026-01-07,Olahraga,Botol Minum 1L,Toko Fisik,Makassar,2,119000
+ORD-0119,2026-08-07,Kecantikan,Serum Vitamin C,Marketplace,Makassar,3,129000
+ORD-0120,2025-12-21,Rumah Tangga,Rak Dinding,Marketplace,Yogyakarta,1,329000
+ORD-0121,2026-04-05,Elektronik,Smartwatch,Toko Fisik,Surabaya,4,899000
+ORD-0122,2026-06-21,Elektronik,TWS Earbuds,Web,Jakarta,2,549000
+ORD-0123,2026-02-25,Rumah Tangga,Rak Dinding,Web,Jakarta,1,329000
+ORD-0124,2026-05-03,Olahraga,Matras Yoga,Toko Fisik,Medan,2,219000
+ORD-0125,2026-06-13,Olahraga,Botol Minum 1L,Marketplace,Jakarta,1,119000
+ORD-0126,2026-02-05,Elektronik,TWS Earbuds,Web,Bandung,3,549000
+ORD-0127,2026-09-04,Rumah Tangga,Rak Dinding,Web,Bandung,1,329000
+ORD-0128,2026-07-26,Elektronik,Smartwatch,Web,Makassar,1,899000
+ORD-0129,2026-03-19,Kecantikan,Serum Vitamin C,Toko Fisik,Jakarta,3,129000
+ORD-0130,2026-09-13,Rumah Tangga,Rak Dinding,Toko Fisik,Yogyakarta,4,329000
+ORD-0131,2026-05-17,Elektronik,TWS Earbuds,Marketplace,Medan,2,549000
+ORD-0132,2026-02-03,Olahraga,Botol Minum 1L,Web,Yogyakarta,4,119000
+ORD-0133,2026-11-04,Olahraga,Botol Minum 1L,Toko Fisik,Bandung,4,119000
+ORD-0134,2026-08-02,Kecantikan,Sunscreen SPF50,Web,Medan,2,89000
+ORD-0135,2026-01-27,Fesyen,Kemeja Linen,Toko Fisik,Makassar,1,249000
+ORD-0136,2026-07-25,Elektronik,TWS Earbuds,Marketplace,Surabaya,2,549000
+ORD-0137,2025-12-22,Olahraga,Matras Yoga,Marketplace,Makassar,2,219000
+ORD-0138,2026-06-24,Kecantikan,Serum Vitamin C,Web,Jakarta,1,129000
+ORD-0139,2026-11-27,Rumah Tangga,Rak Dinding,Marketplace,Bandung,2,329000
+ORD-0140,2026-10-10,Olahraga,Botol Minum 1L,Toko Fisik,Jakarta,5,119000
+ORD-0141,2026-07-23,Fesyen,Kemeja Linen,Marketplace,Yogyakarta,1,249000
+ORD-0142,2026-06-09,Elektronik,Smartwatch,Web,Bandung,1,899000
+ORD-0143,2026-02-18,Rumah Tangga,Rak Dinding,Toko Fisik,Surabaya,1,329000
+ORD-0144,2026-09-23,Fesyen,Sneakers Kanvas,Toko Fisik,Yogyakarta,2,459000
+ORD-0145,2026-11-27,Kecantikan,Sunscreen SPF50,Toko Fisik,Surabaya,1,89000
+ORD-0146,2026-02-20,Elektronik,Smartwatch,Web,Yogyakarta,2,899000
+ORD-0147,2026-05-18,Elektronik,Smartwatch,Marketplace,Jakarta,1,899000
+ORD-0148,2026-11-10,Rumah Tangga,Rak Dinding,Marketplace,Yogyakarta,4,329000
+ORD-0149,2026-05-04,Rumah Tangga,Rak Dinding,Toko Fisik,Makassar,3,329000
+ORD-0150,2026-02-27,Rumah Tangga,Rak Dinding,Marketplace,Jakarta,1,329000
+ORD-0151,2026-11-13,Kecantikan,Serum Vitamin C,Marketplace,Medan,1,129000
+ORD-0152,2026-08-16,Fesyen,Sneakers Kanvas,Marketplace,Yogyakarta,4,459000
+ORD-0153,2026-01-07,Olahraga,Botol Minum 1L,Toko Fisik,Makassar,1,119000
+ORD-0154,2026-01-21,Fesyen,Kemeja Linen,Marketplace,Bandung,1,249000
+ORD-0155,2026-06-12,Rumah Tangga,Lampu Meja,Web,Jakarta,1,189000
+ORD-0156,2025-12-16,Fesyen,Kemeja Linen,Toko Fisik,Medan,2,249000
+ORD-0157,2025-12-13,Olahraga,Botol Minum 1L,Toko Fisik,Medan,2,119000
+ORD-0158,2026-06-10,Fesyen,Kemeja Linen,Marketplace,Makassar,1,249000
+ORD-0159,2026-05-22,Rumah Tangga,Rak Dinding,Toko Fisik,Medan,1,329000
+ORD-0160,2026-04-26,Fesyen,Sneakers Kanvas,Marketplace,Medan,1,459000
+ORD-0161,2026-04-17,Fesyen,Sneakers Kanvas,Toko Fisik,Surabaya,3,459000
+ORD-0162,2026-04-24,Olahraga,Matras Yoga,Marketplace,Bandung,2,219000
+ORD-0163,2026-05-19,Olahraga,Matras Yoga,Marketplace,Makassar,2,219000
+ORD-0164,2026-04-23,Rumah Tangga,Lampu Meja,Web,Jakarta,1,189000
+ORD-0165,2026-05-27,Elektronik,TWS Earbuds,Marketplace,Bandung,2,549000
+ORD-0166,2026-05-04,Fesyen,Sneakers Kanvas,Web,Bandung,1,459000
+ORD-0167,2026-02-17,Rumah Tangga,Rak Dinding,Marketplace,Jakarta,1,329000
+ORD-0168,2026-02-20,Elektronik,TWS Earbuds,Marketplace,Bandung,1,549000
+ORD-0169,2026-04-22,Kecantikan,Serum Vitamin C,Marketplace,Medan,1,129000
+ORD-0170,2026-11-26,Kecantikan,Serum Vitamin C,Web,Bandung,1,129000
+ORD-0171,2026-06-18,Rumah Tangga,Lampu Meja,Web,Makassar,2,189000
+ORD-0172,2026-04-30,Rumah Tangga,Rak Dinding,Toko Fisik,Surabaya,1,329000
+ORD-0173,2026-06-27,Rumah Tangga,Rak Dinding,Marketplace,Bandung,1,329000
+ORD-0174,2026-01-08,Elektronik,Smartwatch,Marketplace,Yogyakarta,1,899000
+ORD-0175,2025-12-04,Fesyen,Sneakers Kanvas,Toko Fisik,Surabaya,3,459000
+ORD-0176,2026-07-06,Fesyen,Sneakers Kanvas,Web,Yogyakarta,1,459000
+ORD-0177,2026-03-09,Fesyen,Kemeja Linen,Web,Makassar,1,249000
+ORD-0178,2026-07-11,Elektronik,TWS Earbuds,Marketplace,Bandung,3,549000
+ORD-0179,2026-03-12,Olahraga,Matras Yoga,Toko Fisik,Medan,1,219000
+ORD-0180,2026-03-16,Rumah Tangga,Rak Dinding,Toko Fisik,Medan,1,329000
+ORD-0181,2026-08-18,Fesyen,Kemeja Linen,Toko Fisik,Makassar,1,249000
+ORD-0182,2026-01-29,Olahraga,Botol Minum 1L,Marketplace,Yogyakarta,1,119000
+ORD-0183,2026-11-08,Rumah Tangga,Lampu Meja,Marketplace,Surabaya,1,189000
+ORD-0184,2026-11-05,Elektronik,TWS Earbuds,Toko Fisik,Jakarta,3,549000
+ORD-0185,2026-11-08,Olahraga,Botol Minum 1L,Web,Medan,1,119000
+ORD-0186,2025-12-02,Kecantikan,Sunscreen SPF50,Web,Makassar,4,89000
+ORD-0187,2026-04-24,Rumah Tangga,Rak Dinding,Web,Makassar,1,329000
+ORD-0188,2026-07-29,Olahraga,Matras Yoga,Marketplace,Makassar,3,219000
+ORD-0189,2026-01-18,Rumah Tangga,Lampu Meja,Web,Jakarta,1,189000
+ORD-0190,2026-05-28,Fesyen,Kemeja Linen,Toko Fisik,Makassar,3,249000
+ORD-0191,2025-12-05,Olahraga,Matras Yoga,Toko Fisik,Yogyakarta,2,219000
+ORD-0192,2026-06-22,Elektronik,TWS Earbuds,Web,Jakarta,1,549000
+ORD-0193,2026-08-07,Olahraga,Matras Yoga,Marketplace,Jakarta,1,219000
+ORD-0194,2026-10-07,Kecantikan,Sunscreen SPF50,Marketplace,Makassar,1,89000
+ORD-0195,2026-08-18,Rumah Tangga,Lampu Meja,Marketplace,Makassar,3,189000
+ORD-0196,2026-04-04,Fesyen,Sneakers Kanvas,Marketplace,Bandung,3,459000
+ORD-0197,2026-03-27,Olahraga,Botol Minum 1L,Toko Fisik,Bandung,1,119000
+ORD-0198,2026-08-16,Olahraga,Matras Yoga,Marketplace,Medan,3,219000
+ORD-0199,2026-07-31,Fesyen,Kemeja Linen,Toko Fisik,Yogyakarta,1,249000
+ORD-0200,2026-09-04,Fesyen,Kemeja Linen,Toko Fisik,Makassar,2,249000
+ORD-0201,2025-12-18,Elektronik,Smartwatch,Web,Surabaya,1,899000
+ORD-0202,2026-03-02,Fesyen,Sneakers Kanvas,Toko Fisik,Jakarta,3,459000
+ORD-0203,2026-09-06,Fesyen,Kemeja Linen,Marketplace,Bandung,2,249000
+ORD-0204,2026-01-18,Fesyen,Kemeja Linen,Toko Fisik,Medan,3,249000
+ORD-0205,2026-09-23,Kecantikan,Serum Vitamin C,Marketplace,Surabaya,1,129000
+ORD-0206,2026-02-01,Elektronik,Smartwatch,Marketplace,Bandung,2,899000
+ORD-0207,2025-12-19,Fesyen,Sneakers Kanvas,Web,Surabaya,5,459000
+ORD-0208,2026-10-03,Olahraga,Matras Yoga,Marketplace,Yogyakarta,1,219000
+ORD-0209,2025-12-03,Rumah Tangga,Rak Dinding,Toko Fisik,Yogyakarta,2,329000
+ORD-0210,2026-08-25,Olahraga,Matras Yoga,Marketplace,Jakarta,3,219000
+ORD-0211,2026-03-07,Elektronik,TWS Earbuds,Web,Makassar,3,549000
+ORD-0212,2026-07-30,Elektronik,TWS Earbuds,Toko Fisik,Yogyakarta,5,549000
+ORD-0213,2026-03-25,Fesyen,Kemeja Linen,Web,Jakarta,2,249000
+ORD-0214,2026-06-11,Elektronik,Smartwatch,Toko Fisik,Makassar,1,899000
+ORD-0215,2026-01-30,Olahraga,Botol Minum 1L,Web,Yogyakarta,1,119000
+ORD-0216,2026-03-07,Elektronik,TWS Earbuds,Web,Bandung,2,549000
+ORD-0217,2026-05-30,Fesyen,Kemeja Linen,Toko Fisik,Bandung,1,249000
+ORD-0218,2026-10-13,Kecantikan,Sunscreen SPF50,Web,Makassar,1,89000
+ORD-0219,2026-04-16,Kecantikan,Serum Vitamin C,Web,Medan,1,129000
+ORD-0220,2026-03-21,Rumah Tangga,Lampu Meja,Toko Fisik,Surabaya,2,189000
+ORD-0221,2026-01-03,Rumah Tangga,Rak Dinding,Web,Makassar,2,329000
+ORD-0222,2026-10-02,Fesyen,Sneakers Kanvas,Marketplace,Bandung,2,459000
+ORD-0223,2026-09-08,Elektronik,Smartwatch,Marketplace,Jakarta,1,899000
+ORD-0224,2026-10-08,Kecantikan,Sunscreen SPF50,Web,Bandung,2,89000
+ORD-0225,2026-02-11,Kecantikan,Serum Vitamin C,Marketplace,Bandung,1,129000
+ORD-0226,2026-04-30,Elektronik,TWS Earbuds,Toko Fisik,Surabaya,2,549000
+ORD-0227,2026-09-16,Kecantikan,Sunscreen SPF50,Toko Fisik,Medan,3,89000
+ORD-0228,2026-02-04,Kecantikan,Serum Vitamin C,Toko Fisik,Surabaya,1,129000
+ORD-0229,2026-08-15,Rumah Tangga,Lampu Meja,Toko Fisik,Jakarta,2,189000
+ORD-0230,2026-03-05,Rumah Tangga,Rak Dinding,Toko Fisik,Medan,2,329000
+ORD-0231,2026-01-18,Elektronik,TWS Earbuds,Web,Bandung,1,549000
+ORD-0232,2025-12-23,Rumah Tangga,Rak Dinding,Toko Fisik,Surabaya,2,329000
+ORD-0233,2026-08-18,Elektronik,Smartwatch,Toko Fisik,Surabaya,2,899000
+ORD-0234,2025-12-10,Olahraga,Matras Yoga,Toko Fisik,Bandung,1,219000
+ORD-0235,2026-07-28,Elektronik,Smartwatch,Toko Fisik,Yogyakarta,2,899000
+ORD-0236,2026-02-05,Kecantikan,Serum Vitamin C,Marketplace,Surabaya,1,129000
+ORD-0237,2025-12-16,Fesyen,Kemeja Linen,Toko Fisik,Bandung,3,249000
+ORD-0238,2026-03-21,Rumah Tangga,Rak Dinding,Marketplace,Yogyakarta,1,329000
+ORD-0239,2026-07-01,Rumah Tangga,Lampu Meja,Web,Bandung,2,189000
+ORD-0240,2026-03-15,Olahraga,Matras Yoga,Marketplace,Makassar,2,219000
+ORD-0241,2026-11-20,Olahraga,Botol Minum 1L,Marketplace,Makassar,1,119000
+ORD-0242,2026-06-20,Elektronik,Smartwatch,Web,Yogyakarta,3,899000
+ORD-0243,2026-02-23,Fesyen,Kemeja Linen,Toko Fisik,Medan,1,249000
+ORD-0244,2026-01-06,Rumah Tangga,Lampu Meja,Marketplace,Jakarta,1,189000
+ORD-0245,2026-08-03,Fesyen,Sneakers Kanvas,Web,Yogyakarta,3,459000
+ORD-0246,2026-07-22,Elektronik,TWS Earbuds,Marketplace,Bandung,4,549000
+ORD-0247,2026-10-13,Elektronik,TWS Earbuds,Marketplace,Jakarta,2,549000
+ORD-0248,2026-03-09,Elektronik,TWS Earbuds,Toko Fisik,Surabaya,1,549000
+ORD-0249,2026-11-28,Rumah Tangga,Lampu Meja,Web,Surabaya,1,189000
+ORD-0250,2026-10-08,Olahraga,Botol Minum 1L,Marketplace,Medan,1,119000
+ORD-0251,2026-05-14,Olahraga,Matras Yoga,Toko Fisik,Bandung,1,219000
+ORD-0252,2026-09-08,Kecantikan,Sunscreen SPF50,Marketplace,Medan,5,89000
+ORD-0253,2026-06-02,Elektronik,Smartwatch,Web,Bandung,2,899000
+ORD-0254,2026-05-19,Elektronik,Smartwatch,Marketplace,Jakarta,4,899000
+ORD-0255,2026-04-04,Kecantikan,Serum Vitamin C,Web,Jakarta,2,129000
+ORD-0256,2026-06-17,Elektronik,Smartwatch,Web,Makassar,1,899000
+ORD-0257,2026-11-22,Olahraga,Matras Yoga,Web,Bandung,3,219000
+ORD-0258,2026-02-24,Elektronik,TWS Earbuds,Web,Medan,2,549000
+ORD-0259,2026-02-28,Kecantikan,Sunscreen SPF50,Toko Fisik,Surabaya,2,89000
+ORD-0260,2026-03-31,Olahraga,Matras Yoga,Marketplace,Medan,3,219000
+ORD-0261,2026-09-04,Elektronik,TWS Earbuds,Toko Fisik,Makassar,2,549000
+ORD-0262,2026-05-13,Elektronik,Smartwatch,Toko Fisik,Makassar,1,899000
+ORD-0263,2026-11-14,Olahraga,Botol Minum 1L,Web,Makassar,1,119000
+ORD-0264,2026-11-11,Kecantikan,Sunscreen SPF50,Marketplace,Yogyakarta,2,89000
+ORD-0265,2026-07-27,Elektronik,Smartwatch,Marketplace,Surabaya,1,899000
+ORD-0266,2026-04-19,Fesyen,Sneakers Kanvas,Marketplace,Jakarta,2,459000
+ORD-0267,2026-08-08,Elektronik,TWS Earbuds,Toko Fisik,Surabaya,1,549000
+ORD-0268,2026-05-29,Olahraga,Botol Minum 1L,Marketplace,Surabaya,1,119000
+ORD-0269,2026-03-09,Olahraga,Botol Minum 1L,Toko Fisik,Bandung,4,119000
+ORD-0270,2026-02-20,Rumah Tangga,Rak Dinding,Marketplace,Makassar,1,329000
+ORD-0271,2025-12-18,Rumah Tangga,Rak Dinding,Toko Fisik,Jakarta,3,329000
+ORD-0272,2026-02-09,Fesyen,Kemeja Linen,Toko Fisik,Makassar,2,249000
+ORD-0273,2025-12-01,Fesyen,Sneakers Kanvas,Marketplace,Bandung,5,459000
+ORD-0274,2026-10-31,Fesyen,Kemeja Linen,Web,Medan,1,249000
+ORD-0275,2026-11-11,Kecantikan,Serum Vitamin C,Web,Medan,1,129000
+ORD-0276,2026-10-30,Elektronik,TWS Earbuds,Toko Fisik,Yogyakarta,3,549000
+ORD-0277,2025-12-24,Elektronik,TWS Earbuds,Web,Surabaya,4,549000
+ORD-0278,2026-05-12,Elektronik,TWS Earbuds,Toko Fisik,Medan,2,549000
+ORD-0279,2026-11-21,Fesyen,Kemeja Linen,Web,Jakarta,2,249000
+ORD-0280,2026-06-09,Olahraga,Matras Yoga,Marketplace,Medan,2,219000
+ORD-0281,2026-02-26,Fesyen,Kemeja Linen,Marketplace,Makassar,2,249000
+ORD-0282,2026-05-22,Fesyen,Kemeja Linen,Marketplace,Surabaya,1,249000
+ORD-0283,2025-12-26,Elektronik,Smartwatch,Web,Yogyakarta,1,899000
+ORD-0284,2026-07-16,Olahraga,Matras Yoga,Marketplace,Jakarta,1,219000
+ORD-0285,2026-03-15,Elektronik,Smartwatch,Marketplace,Medan,1,899000
+ORD-0286,2026-05-03,Olahraga,Matras Yoga,Toko Fisik,Surabaya,1,219000
+ORD-0287,2026-06-09,Elektronik,TWS Earbuds,Toko Fisik,Bandung,3,549000
+ORD-0288,2026-04-23,Elektronik,Smartwatch,Web,Yogyakarta,2,899000
+ORD-0289,2026-01-24,Elektronik,TWS Earbuds,Web,Medan,1,549000
+ORD-0290,2026-04-10,Olahraga,Matras Yoga,Toko Fisik,Yogyakarta,4,219000
+ORD-0291,2026-06-24,Rumah Tangga,Lampu Meja,Web,Jakarta,1,189000
+ORD-0292,2026-05-26,Kecantikan,Sunscreen SPF50,Web,Surabaya,1,89000
+ORD-0293,2026-05-03,Rumah Tangga,Rak Dinding,Web,Makassar,3,329000
+ORD-0294,2026-03-19,Fesyen,Sneakers Kanvas,Web,Medan,1,459000
+ORD-0295,2026-01-29,Rumah Tangga,Lampu Meja,Toko Fisik,Makassar,2,189000
+ORD-0296,2026-02-28,Olahraga,Botol Minum 1L,Marketplace,Surabaya,3,119000
+ORD-0297,2026-08-15,Elektronik,Smartwatch,Marketplace,Surabaya,1,899000
+ORD-0298,2026-09-07,Fesyen,Kemeja Linen,Marketplace,Yogyakarta,2,249000
+ORD-0299,2026-09-10,Fesyen,Sneakers Kanvas,Web,Surabaya,1,459000
+ORD-0300,2026-08-31,Rumah Tangga,Lampu Meja,Toko Fisik,Medan,3,189000
+ORD-0301,2026-09-28,Kecantikan,Serum Vitamin C,Web,Yogyakarta,3,129000
+ORD-0302,2026-09-16,Rumah Tangga,Rak Dinding,Web,Yogyakarta,1,329000
+ORD-0303,2026-01-05,Fesyen,Sneakers Kanvas,Web,Medan,2,459000
+ORD-0304,2026-04-02,Elektronik,Smartwatch,Toko Fisik,Surabaya,3,899000
+ORD-0305,2025-12-09,Kecantikan,Sunscreen SPF50,Web,Medan,1,89000
+ORD-0306,2026-06-25,Olahraga,Botol Minum 1L,Web,Medan,3,119000
+ORD-0307,2026-01-18,Rumah Tangga,Lampu Meja,Toko Fisik,Yogyakarta,3,189000
+ORD-0308,2026-08-05,Fesyen,Kemeja Linen,Marketplace,Yogyakarta,1,249000
+ORD-0309,2026-07-05,Kecantikan,Sunscreen SPF50,Toko Fisik,Medan,2,89000
+ORD-0310,2026-06-11,Rumah Tangga,Rak Dinding,Toko Fisik,Yogyakarta,1,329000
+ORD-0311,2026-01-14,Kecantikan,Sunscreen SPF50,Web,Bandung,1,89000
+ORD-0312,2026-07-12,Fesyen,Kemeja Linen,Web,Yogyakarta,2,249000
+ORD-0313,2026-07-11,Fesyen,Sneakers Kanvas,Marketplace,Bandung,4,459000
+ORD-0314,2026-07-16,Kecantikan,Serum Vitamin C,Marketplace,Jakarta,1,129000
+ORD-0315,2026-01-17,Olahraga,Matras Yoga,Marketplace,Yogyakarta,1,219000
+ORD-0316,2026-02-07,Elektronik,TWS Earbuds,Marketplace,Jakarta,2,549000
+ORD-0317,2026-08-09,Elektronik,Smartwatch,Marketplace,Bandung,2,899000
+ORD-0318,2026-10-20,Elektronik,Smartwatch,Web,Medan,3,899000
+ORD-0319,2026-03-23,Fesyen,Kemeja Linen,Marketplace,Jakarta,1,249000
+ORD-0320,2026-08-07,Rumah Tangga,Rak Dinding,Marketplace,Yogyakarta,1,329000
+ORD-0321,2026-11-04,Fesyen,Sneakers Kanvas,Toko Fisik,Medan,1,459000
+ORD-0322,2026-08-22,Rumah Tangga,Lampu Meja,Web,Surabaya,1,189000
+ORD-0323,2026-02-08,Rumah Tangga,Rak Dinding,Marketplace,Makassar,1,329000
+ORD-0324,2026-07-06,Fesyen,Sneakers Kanvas,Marketplace,Medan,1,459000
+ORD-0325,2026-05-16,Elektronik,TWS Earbuds,Toko Fisik,Yogyakarta,3,549000
+ORD-0326,2026-05-16,Kecantikan,Serum Vitamin C,Toko Fisik,Jakarta,2,129000
+ORD-0327,2026-05-30,Fesyen,Kemeja Linen,Toko Fisik,Medan,1,249000
+ORD-0328,2026-09-22,Rumah Tangga,Lampu Meja,Web,Surabaya,3,189000
+ORD-0329,2026-03-16,Rumah Tangga,Lampu Meja,Toko Fisik,Bandung,2,189000
+ORD-0330,2025-12-13,Kecantikan,Serum Vitamin C,Web,Makassar,1,129000
+ORD-0331,2026-03-19,Fesyen,Kemeja Linen,Toko Fisik,Medan,2,249000
+ORD-0332,2026-05-04,Rumah Tangga,Lampu Meja,Web,Yogyakarta,2,189000
+ORD-0333,2026-04-17,Rumah Tangga,Lampu Meja,Toko Fisik,Makassar,5,189000
+ORD-0334,2025-12-07,Olahraga,Botol Minum 1L,Toko Fisik,Bandung,1,119000
+ORD-0335,2026-06-30,Kecantikan,Sunscreen SPF50,Marketplace,Bandung,1,89000
+ORD-0336,2025-12-02,Rumah Tangga,Rak Dinding,Toko Fisik,Makassar,1,329000
+ORD-0337,2025-12-14,Fesyen,Sneakers Kanvas,Web,Surabaya,2,459000
+ORD-0338,2026-01-18,Fesyen,Sneakers Kanvas,Web,Yogyakarta,2,459000
+ORD-0339,2026-05-17,Rumah Tangga,Lampu Meja,Web,Makassar,1,189000
+ORD-0340,2026-02-22,Rumah Tangga,Rak Dinding,Toko Fisik,Yogyakarta,2,329000
+ORD-0341,2026-02-08,Elektronik,Smartwatch,Web,Surabaya,1,899000
+ORD-0342,2026-01-12,Olahraga,Matras Yoga,Toko Fisik,Medan,1,219000
+ORD-0343,2026-07-27,Olahraga,Matras Yoga,Toko Fisik,Surabaya,2,219000
+ORD-0344,2026-01-23,Kecantikan,Sunscreen SPF50,Web,Yogyakarta,1,89000
+ORD-0345,2025-12-23,Rumah Tangga,Lampu Meja,Web,Jakarta,1,189000
+ORD-0346,2026-07-06,Kecantikan,Serum Vitamin C,Web,Surabaya,1,129000
+ORD-0347,2026-11-22,Olahraga,Matras Yoga,Marketplace,Medan,1,219000
+ORD-0348,2026-06-21,Kecantikan,Sunscreen SPF50,Web,Medan,1,89000
+ORD-0349,2026-03-17,Elektronik,TWS Earbuds,Toko Fisik,Medan,3,549000
+ORD-0350,2026-02-07,Kecantikan,Sunscreen SPF50,Toko Fisik,Surabaya,1,89000
+ORD-0351,2026-10-28,Fesyen,Kemeja Linen,Toko Fisik,Bandung,1,249000
+ORD-0352,2026-02-15,Olahraga,Botol Minum 1L,Toko Fisik,Makassar,3,119000
+ORD-0353,2026-07-08,Olahraga,Matras Yoga,Marketplace,Jakarta,1,219000
+ORD-0354,2026-01-26,Rumah Tangga,Lampu Meja,Web,Bandung,1,189000
+ORD-0355,2026-06-12,Kecantikan,Serum Vitamin C,Toko Fisik,Yogyakarta,2,129000
+ORD-0356,2026-10-22,Kecantikan,Serum Vitamin C,Web,Bandung,1,129000
+ORD-0357,2026-05-18,Elektronik,Smartwatch,Toko Fisik,Bandung,1,899000
+ORD-0358,2026-02-20,Elektronik,Smartwatch,Web,Medan,1,899000
+ORD-0359,2026-04-22,Rumah Tangga,Rak Dinding,Marketplace,Medan,1,329000
+ORD-0360,2026-06-02,Olahraga,Matras Yoga,Marketplace,Jakarta,5,219000
+ORD-0361,2026-04-25,Kecantikan,Serum Vitamin C,Marketplace,Medan,1,129000
+ORD-0362,2026-05-02,Fesyen,Kemeja Linen,Toko Fisik,Yogyakarta,1,249000
+ORD-0363,2025-12-28,Rumah Tangga,Rak Dinding,Web,Medan,1,329000
+ORD-0364,2026-08-24,Rumah Tangga,Lampu Meja,Marketplace,Bandung,1,189000
+ORD-0365,2026-10-29,Olahraga,Matras Yoga,Marketplace,Bandung,1,219000
+ORD-0366,2025-12-15,Rumah Tangga,Rak Dinding,Web,Makassar,3,329000
+ORD-0367,2026-06-20,Fesyen,Kemeja Linen,Toko Fisik,Makassar,2,249000
+ORD-0368,2025-12-01,Fesyen,Kemeja Linen,Web,Bandung,2,249000
+ORD-0369,2026-01-14,Fesyen,Sneakers Kanvas,Toko Fisik,Makassar,2,459000
+ORD-0370,2026-01-20,Kecantikan,Sunscreen SPF50,Marketplace,Yogyakarta,2,89000
+ORD-0371,2026-06-21,Fesyen,Sneakers Kanvas,Marketplace,Yogyakarta,1,459000
+ORD-0372,2026-08-02,Rumah Tangga,Rak Dinding,Marketplace,Yogyakarta,2,329000
+ORD-0373,2026-07-14,Fesyen,Sneakers Kanvas,Marketplace,Yogyakarta,2,459000
+ORD-0374,2025-12-30,Kecantikan,Serum Vitamin C,Toko Fisik,Yogyakarta,2,129000
+ORD-0375,2026-07-10,Rumah Tangga,Rak Dinding,Web,Jakarta,1,329000
+ORD-0376,2026-08-31,Fesyen,Kemeja Linen,Toko Fisik,Bandung,2,249000
+ORD-0377,2026-01-17,Rumah Tangga,Rak Dinding,Web,Makassar,2,329000
+ORD-0378,2025-12-27,Kecantikan,Sunscreen SPF50,Web,Makassar,1,89000
+ORD-0379,2026-04-30,Kecantikan,Sunscreen SPF50,Toko Fisik,Makassar,3,89000
+ORD-0380,2026-07-02,Olahraga,Matras Yoga,Toko Fisik,Yogyakarta,5,219000
+ORD-0381,2026-11-28,Kecantikan,Sunscreen SPF50,Marketplace,Bandung,1,89000
+ORD-0382,2026-09-13,Fesyen,Sneakers Kanvas,Marketplace,Surabaya,3,459000
+ORD-0383,2026-08-21,Elektronik,Smartwatch,Toko Fisik,Yogyakarta,1,899000
+ORD-0384,2026-03-17,Kecantikan,Sunscreen SPF50,Toko Fisik,Makassar,1,89000
+ORD-0385,2026-06-16,Fesyen,Sneakers Kanvas,Web,Yogyakarta,1,459000
+ORD-0386,2026-04-14,Olahraga,Botol Minum 1L,Toko Fisik,Surabaya,1,119000
+ORD-0387,2026-11-06,Kecantikan,Sunscreen SPF50,Marketplace,Makassar,3,89000
+ORD-0388,2026-10-09,Fesyen,Sneakers Kanvas,Marketplace,Yogyakarta,4,459000
+ORD-0389,2026-10-12,Olahraga,Botol Minum 1L,Toko Fisik,Makassar,1,119000
+ORD-0390,2026-06-14,Fesyen,Sneakers Kanvas,Marketplace,Yogyakarta,2,459000
+ORD-0391,2026-11-29,Kecantikan,Sunscreen SPF50,Marketplace,Surabaya,3,89000
+ORD-0392,2026-02-12,Fesyen,Kemeja Linen,Web,Jakarta,1,249000
+ORD-0393,2026-07-12,Kecantikan,Serum Vitamin C,Toko Fisik,Bandung,1,129000
+ORD-0394,2026-06-16,Elektronik,TWS Earbuds,Web,Makassar,3,549000
+ORD-0395,2026-04-22,Olahraga,Matras Yoga,Web,Yogyakarta,2,219000
+ORD-0396,2026-08-02,Fesyen,Kemeja Linen,Toko Fisik,Bandung,4,249000
+ORD-0397,2026-08-31,Kecantikan,Serum Vitamin C,Marketplace,Jakarta,2,129000
+ORD-0398,2026-01-23,Elektronik,Smartwatch,Toko Fisik,Jakarta,1,899000
+ORD-0399,2026-03-08,Olahraga,Botol Minum 1L,Marketplace,Jakarta,3,119000
+ORD-0400,2026-07-26,Elektronik,Smartwatch,Web,Jakarta,2,899000
+ORD-0401,2026-05-08,Fesyen,Sneakers Kanvas,Web,Surabaya,1,459000
+ORD-0402,2026-11-29,Fesyen,Kemeja Linen,Web,Yogyakarta,2,249000
+ORD-0403,2026-11-30,Olahraga,Matras Yoga,Toko Fisik,Surabaya,1,219000
+ORD-0404,2026-04-16,Fesyen,Kemeja Linen,Marketplace,Jakarta,1,249000
+ORD-0405,2026-05-18,Kecantikan,Serum Vitamin C,Web,Makassar,1,129000
+ORD-0406,2026-11-02,Olahraga,Botol Minum 1L,Web,Surabaya,2,119000
+ORD-0407,2026-08-24,Elektronik,Smartwatch,Toko Fisik,Surabaya,1,899000
+ORD-0408,2025-12-19,Kecantikan,Sunscreen SPF50,Toko Fisik,Jakarta,1,89000
+ORD-0409,2026-11-05,Elektronik,TWS Earbuds,Web,Jakarta,2,549000
+ORD-0410,2026-01-16,Olahraga,Matras Yoga,Web,Jakarta,1,219000
+ORD-0411,2026-08-11,Rumah Tangga,Rak Dinding,Toko Fisik,Medan,3,329000
+ORD-0412,2026-10-25,Fesyen,Kemeja Linen,Toko Fisik,Makassar,2,249000
+ORD-0413,2025-12-12,Fesyen,Kemeja Linen,Web,Medan,4,249000
+ORD-0414,2026-03-16,Olahraga,Botol Minum 1L,Marketplace,Surabaya,1,119000
+ORD-0415,2026-04-11,Kecantikan,Sunscreen SPF50,Marketplace,Makassar,1,89000
+ORD-0416,2026-09-01,Elektronik,Smartwatch,Web,Makassar,1,899000
+ORD-0417,2026-02-07,Olahraga,Matras Yoga,Toko Fisik,Surabaya,3,219000
+ORD-0418,2026-11-21,Kecantikan,Sunscreen SPF50,Toko Fisik,Jakarta,1,89000
+ORD-0419,2026-08-16,Kecantikan,Serum Vitamin C,Marketplace,Jakarta,2,129000
+ORD-0420,2026-02-26,Kecantikan,Sunscreen SPF50,Marketplace,Yogyakarta,1,89000
